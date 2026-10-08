@@ -188,14 +188,9 @@ ul, ol {
   transform: translateY(0);
 }
 
-/* Subtle pulse animation for primary CTAs */
-.cta-button--pulse {
-  animation: subtlePulse 3s ease-in-out infinite;
-}
-
-@keyframes subtlePulse {
-  0%, 100% { box-shadow: 0 4px 16px rgba(0, 200, 81, 0.3); }
-  50% { box-shadow: 0 4px 24px rgba(0, 200, 81, 0.5); }
+/* Performance: all transitions disabled (only testimonials carousel animates) */
+*, *::before, *::after {
+  transition: none !important;
 }
 
 .cta-helper {
@@ -1097,38 +1092,6 @@ ul, ol {
 }
 
 /* ============================================
-   STICKY MOBILE CTA
-   ============================================ */
-.sticky-cta {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background: var(--white);
-  border-top: 1px solid var(--gray-200);
-  padding: 12px 16px;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
-  transform: translateY(100%);
-  transition: transform var(--transition-slow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sticky-cta.visible {
-  transform: translateY(0);
-}
-
-.sticky-cta .cta-button {
-  padding: 14px 24px;
-  font-size: 14px;
-  margin: 0;
-  max-width: 340px;
-  width: 100%;
-}
-
-/* ============================================
    RESPONSIVE: TABLET (600px+)
    ============================================ */
 @media (min-width: 600px) {
@@ -1212,11 +1175,6 @@ ul, ol {
 
   .guarantee-card {
     grid-column: 1 / -1;
-  }
-
-  /* Hide sticky CTA on desktop */
-  .sticky-cta {
-    display: none;
   }
 
   .pain-solution-layout {

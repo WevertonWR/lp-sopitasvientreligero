@@ -38,6 +38,8 @@
     // Price
     const priceEl = document.getElementById('config-price');
     if (priceEl) priceEl.textContent = CONFIG.price;
+    document.querySelectorAll('.config-price-mid').forEach(el => el.textContent = CONFIG.price);
+    document.querySelectorAll('.config-currency-mid').forEach(el => el.textContent = CONFIG.currency);
 
     const oldPriceEls = document.querySelectorAll('.config-old-price');
     oldPriceEls.forEach(el => el.textContent = CONFIG.oldPrice);
@@ -109,28 +111,6 @@
         }
       });
     });
-  }
-
-
-  /* ----- Sticky Mobile CTA ----- */
-  function initStickyCTA() {
-    var stickyCta = document.getElementById('sticky-cta');
-    var heroSection = document.getElementById('hero');
-    if (!stickyCta || !heroSection) return;
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          stickyCta.classList.remove('visible');
-          stickyCta.setAttribute('aria-hidden', 'true');
-        } else {
-          stickyCta.classList.add('visible');
-          stickyCta.setAttribute('aria-hidden', 'false');
-        }
-      });
-    }, { threshold: 0 });
-
-    observer.observe(heroSection);
   }
 
 
@@ -211,53 +191,6 @@
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
-
-
-  /* ----- Scroll Reveal Animation ----- */
-  function initScrollReveal() {
-    var revealElements = document.querySelectorAll(
-      '.for-whom-card, .module-card, .step-card, .bonus-card, .security-badge, .guarantee-card, .accordion-item'
-    );
-
-    if (!('IntersectionObserver' in window)) {
-      // Fallback: show all immediately
-      revealElements.forEach(function (el) {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-      });
-      return;
-    }
-
-    // Set initial state
-    revealElements.forEach(function (el) {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    });
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          // Stagger animation based on sibling index
-          var parent = entry.target.parentElement;
-          var siblings = parent ? Array.from(parent.children) : [];
-          var index = siblings.indexOf(entry.target);
-          var delay = Math.min(index * 80, 400);
-
-          setTimeout(function () {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }, delay);
-
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    revealElements.forEach(function (el) {
-      observer.observe(el);
-    });
-  }
 
 
   /* ----- Touch Carousel Indicators ----- */
@@ -410,6 +343,8 @@
         
         if (priceEl) priceEl.textContent = formattedPrice;
         if (currencyEl) currencyEl.textContent = currencySymbol;
+        document.querySelectorAll('.config-price-mid').forEach(el => el.textContent = formattedPrice);
+        document.querySelectorAll('.config-currency-mid').forEach(el => el.textContent = currencySymbol);
         
         oldPriceEls.forEach(el => el.textContent = formattedOldPrice);
         oldCurrencyEls.forEach(el => el.textContent = currencySymbol);
@@ -425,10 +360,8 @@
     applyConfig();
     localizePrice();
     initSmoothScroll();
-    initStickyCTA();
     initAccordion();
     initModal();
-    initScrollReveal();
     initCarouselHint();
     initModuleDetails();
   }

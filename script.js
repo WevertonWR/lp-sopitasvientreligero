@@ -13,7 +13,7 @@
      =================================================================== */
   const CONFIG = {
     // ===== CHECKOUT URL: Your payment page link =====
-    checkoutUrl: 'https://pay.hotmart.com/H107896872I?checkoutMode=10', // Replace with your real checkout URL, e.g. 'https://pay.hotmart.com/XXXXX'
+    checkoutUrl: 'https://pay.kiwify.com.br/TiHVu4O', // Replace with your real checkout URL, e.g. 'https://pay.hotmart.com/XXXXX'
 
     // ===== PRICE: Display price and currency =====
     price: '10.90',       // e.g. '29.90' or '197'
